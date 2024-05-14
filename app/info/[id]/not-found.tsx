@@ -6,7 +6,7 @@ const NotFound = () => {
         <div className='container mx-auto max-w-lg mt-40'>
             Инн не найден
             <div>
-                <Link href={'/'} className='text-sky-400 hover:text-sky-500'>
+                <Link href={'/'} className='text-sky-400 hover:text-sky-500 underline'>
                     На главную
                 </Link>
             </div>

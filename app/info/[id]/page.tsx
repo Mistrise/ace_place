@@ -50,13 +50,14 @@ const Page = async ({params} :Props) => {
                 <div>
                     <Link
                         rel="noopener noreferrer" target="_blank"
-                        className='text-sky-400 hover:text-sky-500'
+                        className='text-sky-400 hover:text-sky-500 underline'
                         href={`https://yandex.ru/maps/?whatshere[point]=${fetchedData.suggestions[0].data.address.data.geo_lon},${fetchedData.suggestions[0].data.address.data.geo_lat}&whatshere[zoom]=17`}>Адрес
-                        на яндекс картах</Link>
+                        на яндекс картах
+                    </Link>
                 </div>
             </div>
             <div>
-                <Link href={'/'} className='text-sky-400 hover:text-sky-500'>
+                <Link href={'/'} className='text-sky-400 hover:text-sky-500 underline'>
                     На главную
                 </Link>
             </div>
