@@ -44,7 +44,7 @@ const Page = async ({params} :Props) => {
                 </div>
                 <div>
                     <p>
-                        {fetchedData.suggestions[0].data.inn}
+                        ИНН {fetchedData.suggestions[0].data.inn}
                     </p>
                 </div>
                 <div>
