@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from "next/link";
+import {notFound} from "next/navigation";
 
 interface Props {
     params: {id: string}
@@ -21,8 +22,13 @@ const Page = async ({params} :Props) => {
         body: JSON.stringify({query: query, branch_type: "MAIN"})
     }
 
+
     const data = await fetch(url, options)
     const fetchedData = await data.json()
+
+    if (fetchedData.suggestions == false) {
+        return notFound()
+    }
     console.log(fetchedData.suggestions[0].data.address.data.geo_lat)
     console.log(fetchedData.suggestions[0].data.address.data.geo_lon)
     return (
@@ -44,8 +50,17 @@ const Page = async ({params} :Props) => {
                     </p>
                 </div>
                 <div>
-                    <Link href={`https://yandex.ru/maps/?whatshere[point]=${fetchedData.suggestions[0].data.address.data.geo_lon},${fetchedData.suggestions[0].data.address.data.geo_lat}&whatshere[zoom]=17`}>Адрес на яндекс картах</Link>
+                    <Link
+                        rel="noopener noreferrer" target="_blank"
+                        className='text-sky-400 hover:text-sky-500'
+                        href={`https://yandex.ru/maps/?whatshere[point]=${fetchedData.suggestions[0].data.address.data.geo_lon},${fetchedData.suggestions[0].data.address.data.geo_lat}&whatshere[zoom]=17`}>Адрес
+                        на яндекс картах</Link>
                 </div>
+            </div>
+            <div>
+                <Link href={'/'} className='text-sky-400 hover:text-sky-500'>
+                    На главную
+                </Link>
             </div>
         </div>
     );
