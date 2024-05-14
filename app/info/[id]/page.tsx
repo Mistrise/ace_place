@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 interface Props {
     params: {id: string}
@@ -22,17 +23,33 @@ const Page = async ({params} :Props) => {
 
     const data = await fetch(url, options)
     const fetchedData = await data.json()
-    console.log(fetchedData.suggestions[0].value)
+    console.log(fetchedData.suggestions[0].data.address.data.geo_lat)
+    console.log(fetchedData.suggestions[0].data.address.data.geo_lon)
     return (
-        <div className='flex-col'>
-            <div>
-                {fetchedData.suggestions[0].value}
-            </div>
-            <div>
-                {fetchedData.suggestions[0].data.address.value}
+        <div className='container mx-auto max-w-lg mt-40'>
+            <div className='flex-col'>
+                <div>
+                    <h1>
+                        {fetchedData.suggestions[0].value}
+                    </h1>
+                </div>
+                <div>
+                    <p>
+                        {fetchedData.suggestions[0].data.address.value}
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        {fetchedData.suggestions[0].data.inn}
+                    </p>
+                </div>
+                <div>
+                    <Link href={`https://yandex.ru/maps/?whatshere[point]=${fetchedData.suggestions[0].data.address.data.geo_lon},${fetchedData.suggestions[0].data.address.data.geo_lat}&whatshere[zoom]=17`}>Адрес на яндекс картах</Link>
+                </div>
             </div>
         </div>
     );
 };
 
 export default Page;
+
