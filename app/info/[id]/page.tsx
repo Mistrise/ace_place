@@ -29,8 +29,6 @@ const Page = async ({params} :Props) => {
     if (fetchedData.suggestions == false) {
         return notFound()
     }
-    console.log(fetchedData.suggestions[0].data.address.data.geo_lat)
-    console.log(fetchedData.suggestions[0].data.address.data.geo_lon)
     return (
         <div className='container mx-auto max-w-lg mt-40'>
             <div className='flex-col'>
